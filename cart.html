@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<title>LUXEWEAR</title>
+<style>
+* { padding: 0; margin: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: rgba(252, 247, 230, 0.103);
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* الشعار يسار، nav وسط، أيقونات يمين */
+    padding: 10px 20px;
+}
+
+/* شعار المتجر */
+.logo-text {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #383737;
+    cursor: pointer;
+}
+.logo-text span { font-weight: 400; opacity: 0.7; }
+
+/* قائمة التنقل */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex: 1; /* يشغل المساحة بين الشعار والأيقونات */
+}
+.nav button {
+    border: none;
+    background: none;
+    font-family:'Playfair Display', serif;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0 20px;
+    height: 70px;
+}
+
+/* الأيقونات على أقصى اليمين */
+.top-icons {
+    display: flex;
+    gap: 15px;
+}
+.top-icons img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Responsive */
+
+.hero img {
+          width: 100%;
+          height: 60vh;
+            object-fit: cover;
+            margin-top: 50px;
+            animation: slowMove 30s linear infinite;
+        }
+
+        @keyframes slowMove {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.05) translateX(20px); }
+            100% { transform: scale(1) translateX(0); }
+        }
+
+        .hero {
+            position: relative;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+ .wsf {
+            text-align: center;
+            margin: 100px 0;
+            color: #383737;
+        }
+        .start {
+            margin-top: 15px;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            background: #383737;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+       .glass {
+    background: rgba(255, 255, 255, 0.25); /* شفافية */
+    backdrop-filter: blur(10px);          /* تمويه */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: #383737;
+    max-width: 600px;
+} 
+.wsf {
+    text-align: center;
+    margin: 100px 0;
+    color: #383737;
+}
+/* PRODUCTS GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 60px 5%;
+}
+
+/* PRODUCT CARD */
+.Product {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.Product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* PRODUCT IMAGE */
+.Product img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+.Product:hover img {
+    transform: scale(1.05);
+}
+
+/* PRODUCT TITLE */
+.Product h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #383737;
+    margin-bottom: 8px;
+}
+
+/* PRODUCT PRICE */
+.prd-price {
+    font-size: 17px;
+    font-weight: 500;
+    color: #777;
+}
+
+
+
+/* MODAL */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    width: 90%;
+    max-width: 850px;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box img {
+    width: 100%;
+   height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.qty {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.qty button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background: #383737;
+    color: white;
+    cursor: pointer;
+}
+
+.add-cart-btn {
+    margin: 15px 0;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #383737;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* SIMILAR PRODUCTS */
+.similar-title {
+    margin: 30px 0 15px;
+}
+
+.similar-products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.similar-products .Product img {
+    height: 180px;
+}
+.mode-sticker {
+            position: static;
+        }
+
+        #mode {
+            position: relative;
+            right: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        #mode.rotating {
+            transform: rotate(360deg);
+        }
+
+        .dark {
+            background-color:#180109 ;
+            color: #f1f1f1;
+            filter: brightness(0.95);
+        }
+
+        /* العناوين */
+        .dark h1, .dark h2, .dark h3, .dark h4 {
+            color: #f5f5f5;
+        }
+
+        .dark p, .dark span, .dark li {
+            color: #e0e0e0;
+        }
+
+        .dark .nav button {
+            color: #f1f1f1;
+        }
+
+        .dark .a, .dark .ktb {
+            color: #f1f1f1;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .dark #u, .dark #totalBox {
+            background: #3a0419;
+            color: #f1f1f1;
+        }
+
+        .dark #u li, .dark .total-item span {
+            color: #f1f1f1;
+        }
+
+        .dark .total-item button {
+            background: #333;
+            color: #fff;
+        }
+
+        .dark .ad, .dark #back, .dark #x, .dark .menu2 {
+            background-color: rgb(97, 5, 48);
+            color: #fff;
+        }
+
+        .dark #searchInput {
+            background: #3a3205;
+            color: #fff;
+            border: 1px solid #555;
+        }
+        .dark #contactSection{
+  background: rgba(58, 5, 23, 0.7);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.dark #contactSection h2{
+  color: #f5f5f5;
+}
+
+.dark #contactSection p{
+  color: #e0e0e0;
+}
+
+.dark #contactSection p span{
+  color: #ff5aad;
+}
+.dark .site-footer{
+  background: rgba(40,5,20,0.9);
+}
+
+.dark .footer-col p,
+.dark .footer-col a,
+.dark .footer-bottom{
+  color: #e0e0e0;
+}
+
+.dark .footer-col a:hover{
+  color: #ff5aad;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* القائمة المنسدلة */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 130px;   /* أصغر حجم */
+    flex-direction: column;
+    font-size: 14px;    /* أصغر خط */
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;   /* أصغر padding */
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* اظهار القائمة عند المرور بالماوس */
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+.site-footer{
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  margin-top: 140px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.footer-container{
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+.footer-col h3{
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.footer-col h3 span{
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.footer-col h4{
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.footer-col p,
+.footer-col a{
+  font-size: 14px;
+  line-height: 1.9;
+  color: #555;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.footer-col a:hover{
+  color: #000;
+  transform: translateX(4px);
+}
+
+.footer-bottom{
+  text-align: center;
+  padding: 22px;
+  font-size: 13px;
+  opacity: 0.6;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+@media (max-width: 992px){
+
+    header{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav{
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .products{
+        grid-template-columns: repeat(2,1fr);
+        gap: 25px;
+    }
+
+    #aboutSection{
+        grid-template-columns: 1fr !important;
+        padding: 40px !important;
+        gap: 30px !important;
+    }
+
+    #aboutSection img{
+        height: 350px !important;
+    }
+
+    .footer-container{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px){
+
+    header{
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .logo-text{
+        font-size: 22px;
+    }
+
+    .nav{
+        width: 100%;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .nav button{
+        font-size: 15px;
+        padding: 8px 12px;
+        height: auto;
+    }
+
+    .top-icons{
+        gap: 10px;
+    }
+
+    .top-icons img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .hero img{
+        height: 50vh;
+        margin-top: 20px;
+    }
+
+    .glass{
+        width: 90%;
+        padding: 20px;
+    }
+
+    .glass h2{
+        font-size: 24px;
+    }
+
+    .glass p{
+        font-size: 14px;
+    }
+
+    .start{
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .wsf{
+        margin: 60px 15px;
+    }
+
+    .wsf h1{
+        font-size: 28px;
+    }
+
+    .wsf h3{
+        font-size: 16px;
+    }
+
+    .products{
+        grid-template-columns: repeat(2,1fr);
+        padding: 30px 15px;
+        gap: 15px;
+    }
+
+    .Product{
+        padding: 12px;
+    }
+
+    .Product img{
+        height: 220px;
+    }
+
+    .Product h2{
+        font-size: 17px;
+    }
+
+    .prd-price{
+        font-size: 15px;
+    }
+
+    #aboutSection{
+        padding: 20px !important;
+    }
+
+    #aboutSection h2{
+        font-size: 26px !important;
+    }
+
+    #aboutSection p{
+        font-size: 15px;
+    }
+
+    #aboutSection img{
+        height: 280px !important;
+    }
+
+    .modal-box{
+        padding: 20px;
+    }
+
+    .similar-products{
+        grid-template-columns: 1fr;
+    }
+
+    #u{
+        width: 90% !important;
+        right: 5% !important;
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 480px){
+
+    .products{
+        grid-template-columns: 1fr;
+    }
+
+    .hero img{
+        height: 40vh;
+    }
+
+    .glass{
+        padding: 15px;
+    }
+
+    .glass h2{
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .glass p{
+        font-size: 13px;
+    }
+
+    .wsf h1{
+        font-size: 22px;
+    }
+
+    .wsf h3{
+        font-size: 14px;
+    }
+
+    .Product img{
+        height: 260px;
+    }
+
+    #aboutSection{
+        padding: 15px !important;
+    }
+
+    #aboutSection h2{
+        font-size: 22px !important;
+    }
+
+    #aboutSection p{
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .footer-container{
+        padding: 40px 20px;
+    }
+
+    .footer-col h3{
+        font-size: 22px;
+    }
+}
+.toast{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #383737;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+    z-index: 99999;
+}
+
+.toast.show{
+    opacity: 1;
+    visibility: visible;
+}
+</style>
+</head>
+<body>
+    <div id="toast" class="toast"></div>
+<header>
+    <div class="logo-text">LUXE<span>WEAR</span></div>
+
+    <div class="nav">
+        <button id="home">Home</button>
+        <div class="dropdown">
+    <button id="products">Products </button>
+    <div class="dropdown-content" id="productsDropdown">
+        <button data-category="All">All</button>
+        <button data-category="Jacket">Jackets</button>
+        <button data-category="Blouse">Blouses</button>
+        <button data-category="Pants">Pants</button>
+        <button data-category="Sweater">Sweaters</button>
+        <button data-category="Dress">Dresses</button>
+    </div>
+</div>
+        <button id="about">About Us</button>
+    </div>
+
+    <div class="top-icons">
+       <img src="add-cart_3722380 (1)(1).png" alt="Cart" id="cartt">
+       <img src="moon2.png" alt="Theme" id="mode">
+    </div>
+</header>
+<ul id="u" style="
+position:absolute;
+top:70px;
+right:20px;
+background:white;
+list-style:none;
+padding:15px;
+border-radius:15px;
+display:none;
+width:300px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+z-index:9999;
+"></ul>
+ <div class="hero">
+        <img src="xxx.avif">
+        <div class="hero-content">
+            <div class="glass">
+                <h2>Stylish clothing designed for comfort and confidence</h2>
+                <p>Our clothing store is dedicated to elegance and simplicity.</p>
+                <button class="start" onclick="goProducts()">Get started</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Quote ===== -->
+    <div class="wsf">
+    <h1>"Enjoy quality fashion."</h1>
+    <h3>"Trendy clothes, great quality, affordable prices."</h3>
+</div>
+
+<div class="products" id="pr">
+        <div class="Product"  data-category="Jacket" >
+            <img src="a.avif" onclick="openModal('Jacket','Elegant jacket made from premium fabric.', 50,'a.avif')" >
+            <h2>Jacket</h2>
+            <p class="prd-price" data-price="50">50.00$</p>
+        </div>
+        <div class="Product"  data-category="Blouse" >
+            <img src="aa.avif" onclick="openModal('blouse','Soft blouse with modern elegant design', 60,'aa.avif')" >
+            <h2>Blouse</h2>
+            <p class="prd-price" data-price="60">60.00$</p>
+        </div>
+        <div class="Product"  data-category="Blouse" >
+            <img src="aaa.avif" onclick="openModal('blouse','Soft cotton blouse with a relaxed fit, ideal for everyday comfort and style', 40,'aaa.avif')" >
+            <h2>Blouse</h2>
+            <p class="prd-price" data-price="40">40.00$</p>
+        </div>
+        <div class="Product"   data-category="Pants" >
+            <img src="aaaa.avif" onclick="openModal('pants','High-waist pants designed for comfort and elegance, suitable for work or casual wear', 50,'aaaa.avif')" >
+            <h2>Pants</h2>
+            <p class="prd-price" data-price="50">50.00$</p>
+        </div>
+        <div class="Product"  data-category="Sweater" >
+            <img src="aaaaaaa.avif" onclick="openModal('Sweater','Warm and cozy sweater with a modern cut, perfect for chilly days', 70,'aaaaaaa.avif')" >
+            <h2>Sweater</h2>
+            <p class="prd-price" data-price="70">70.00$</p>
+        </div>
+        <div class="Product"   data-category="Dress" >
+            <img src="aaaaaa.avif" onclick="openModal('dress','Stylish dress with a flattering silhouette, designed for comfort and elegance', 40,'aaaaaa.avif')" >
+            <h2>Dress</h2>
+            <p class="prd-price" data-price="40">40.00$</p>
+        </div>
+    </div>
+
+<section id="aboutSection" style="
+max-width:1200px;
+margin:120px auto;
+padding:60px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+">
+
+  <!-- TEXT -->
+  <div>
+    <h2 style="font-size:32px;margin-bottom:20px;">About LUXEWEAR</h2>
+    <p style="line-height:1.8;margin-bottom:15px;">
+      LUXEWEAR is a contemporary fashion store created for those who value elegance,
+      comfort, and simplicity. We believe that fashion is more than clothing — it is
+      a reflection of confidence and individuality.
+    </p>
+    <p style="line-height:1.8;margin-bottom:15px;">
+      Our collections are thoughtfully designed using high-quality fabrics and modern
+      silhouettes, making every piece suitable for both everyday wear and special moments.
+    </p>
+    <p style="line-height:1.8;">
+      At LUXEWEAR, we aim to offer timeless style that feels effortless, empowering you
+      to express yourself with confidence and grace.
+    </p>
+
+    <h2 style="margin-top:40px;">Contact Us</h2>
+    <p>Email: contact@luxewear.com</p>
+    <p>Phone: +123 456 7890</p>
+    <p>Address: 123 Fashion Street, City, Country</p>
+  </div>
+
+  <!-- IMAGE -->
+  <div>
+    <img src="1.jpg" alt="About LUXEWEAR" style="
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:25px;
+    ">
+  </div>
+
+</section>
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h3>LUXE<span>WEAR</span></h3>
+      <p>
+        Modern fashion designed for comfort, elegance, and everyday confidence.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Email: contact@luxewear.com</p>
+      <p>Phone: +964 000 000 0000</p>
+      <p>Sun – Thu | 9:00 AM – 5:00 PM</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 LUXEWEAR — All Rights Reserved
+  </div>
+</footer>
+  
+    <!-- PRODUCT MODAL -->
+<div id="overlay" class="overlay">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal()">×</span>
+
+    <img id="modalImg">
+    <h2 id="modalName"></h2>
+    <p id="modalDesc"></p>
+    <p id="modalPrice"></p>
+
+    <div class="qty">
+      <button onclick="changeQty(-1)">−</button>
+      <span id="qtyValue">1</span>
+      <button onclick="changeQty(1)">+</button>
+    </div>
+
+    <button class="add-cart-btn" onclick="addFromModal()">Add to Cart</button>
+
+    <h3 class="similar-title">You may also like</h3>
+    <div id="similarProducts" class="similar-products"></div>
+  </div>
+</div>
+<script>
+    
+    let cart = {};
+    let homeBtn = document.getElementById("home");
+let aboutBtn = document.getElementById("about");
+let productsBtn = document.getElementById("products");
+
+let hero = document.querySelector(".hero");
+let quote = document.querySelector(".wsf");
+let productsSection = document.querySelector(".products");
+let aboutSection = document.getElementById("aboutSection");
+aboutSection.style.display = "none";
+    let u = document.getElementById("u");
+let cartt = document.getElementById("cartt");
+ let modalName="", modalPrice=0, modalImg="", modalDesc="";
+    let qty = 1;
+
+    function openModal(name, desc, price, img){
+    modalName = name;
+    modalDesc = desc;
+    modalPrice = price;
+    modalImg = img;
+    qty = 1;
+
+    document.getElementById("modalName").innerText = name;
+    document.getElementById("modalDesc").innerText = desc;
+    document.getElementById("modalPrice").innerText = price + "$";
+    document.getElementById("modalImg").src = img;
+    document.getElementById("qtyValue").innerText = qty;
+
+    showSimilar(name); // ⭐ هذا السطر الجديد
+    document.getElementById("overlay").style.display = "flex";
+}
+
+    function closeModal() {
+        document.getElementById("overlay").style.display = "none";
+    }
+
+    function changeQty(v) {
+        qty += v;
+        if(qty < 1) qty = 1;
+        document.getElementById("qtyValue").innerText = qty;
+        document.getElementById("modalPrice").innerText = (modalPrice * qty) + "$";
+    }
+
+    function addFromModal() {
+        if(cart[modalName]){
+            cart[modalName].qty += qty;
+        } else {
+            cart[modalName] = { price: modalPrice, img: modalImg, qty: qty };
+        }
+        saveCart();
+        update();
+       showToast("Product added to cart ✔");
+        closeModal();
+
+        let allProducts = document.querySelectorAll('.Product');
+        allProducts.forEach(prd => {
+            let h2 = prd.querySelector('h2');
+            let priceEl = prd.querySelector('p');
+            if(h2.innerText === modalName){
+                let unitPrice = parseFloat(priceEl.dataset.price);
+                priceEl.innerText = (unitPrice * cart[modalName].qty).toFixed(2) + '$';
+            }
+        });
+    }
+  
+   function showSimilar(currentName) {
+    let container = document.getElementById("similarProducts");
+    container.innerHTML = "";
+
+    let allProducts = document.querySelectorAll(".Product");
+    let similar = [];
+
+    allProducts.forEach(p => {
+        let title = p.querySelector("h2").innerText;
+        if (title !== currentName && similar.length < 2) {
+            similar.push(p);
+        }
+    });
+
+    similar.forEach(p => {
+        let img = p.querySelector("img").src;
+        let title = p.querySelector("h2").innerText;
+        let price = p.querySelector(".prd-price").dataset.price;
+        let desc = p.querySelector("img").getAttribute("onclick")
+                     .match(/'([^']*)',\s*'([^']*)'/)[2];
+
+        container.innerHTML += `
+            <div class="Product"
+                 onclick="openModal('${title}','${desc}',${price},'${img}')">
+                <img src="${img}">
+                <h2>${title}</h2>
+                <p class="prd-price">${price}$</p>
+            </div>
+        `;
+    });
+}
+   
+ function update() {
+        let total = 0;
+        u.innerHTML = "";
+        if (Object.keys(cart).length === 0) {
+            u.innerHTML = "<li>Your cart is empty 🛒</li>";
+            return;
+        }
+        for (let name in cart) {
+            let item = cart[name];
+            let li = document.createElement("li");
+            li.style.display = "flex";
+            li.style.gap = "10px";
+            li.innerHTML = `
+                <img src="${item.img}" style="width:50px;height:50px;border-radius:5px;">
+                <div>
+                    <strong>${name}</strong><br>
+                    $${item.price} × ${item.qty} = $${item.price * item.qty}
+                </div>
+                <div>
+                    <button onclick="qut('${name}', -1)">−</button>
+                    <button onclick="qut('${name}', 1)">+</button>
+                    <button onclick="delete cart['${name}']; saveCart(); update();">❌</button>
+                </div>
+            `;
+            u.appendChild(li);
+            total += item.price * item.qty;
+        }
+
+        // ===== Footer داخل السلة =====
+        let footer = document.createElement("li");
+        footer.style.textAlign = "center";
+        footer.innerHTML = `
+            <hr>
+            <strong>Total: $${total}</strong><br><br>
+            <button style="padding:10px 25px; border:none; border-radius:25px; background:#383737; color:white; cursor:pointer;" onclick="checkout()">Checkout</button>
+        `;
+        u.appendChild(footer);
+    }
+
+    function sum(name, price, img) {
+        if (cart[name]) {
+            cart[name].qty++;
+        } else {
+            cart[name] = { price: price, img: img, qty: 1 };
+        }
+        saveCart();
+        update();
+        showToast(name + " added to cart ✔️");
+    }
+
+    function qut(name, delta) {
+        if (!cart[name]) return;
+        cart[name].qty += delta;
+        if (cart[name].qty <= 0) {
+            delete cart[name];
+        }
+        saveCart();
+        update();
+    }
+
+    cartt.addEventListener("click", function () {
+        u.style.display = (u.style.display === "block") ? "none" : "block";
+    });
+
+    function clearCart() {
+        cart = {};
+        localStorage.removeItem("cart");
+        update();
+    }
+
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function loadCart() {
+        let saved = localStorage.getItem("cart");
+        if (saved) {
+            cart = JSON.parse(saved);
+            update();
+        }
+    }
+
+    loadCart();
+
+    function checkout() {
+        if (Object.keys(cart).length === 0) {
+            alert("Your cart is empty 🛒");
+            return;
+        }
+        alert("Order placed successfully ✔️");
+        cart = {};
+        localStorage.removeItem("cart");
+        update();
+    }
+     document.addEventListener("click", function(event) {
+        let cartDropdown = document.getElementById("u");
+        let cartButton = document.getElementById("cartt");
+        if (!cartDropdown.contains(event.target) && !cartButton.contains(event.target)) {
+            cartDropdown.style.display = "none";
+        }
+    });
+
+    u.addEventListener("click", function(event){
+        event.stopPropagation();
+    });
+
+    // ===== Go to products =====
+    function goProducts() {
+        document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+ let body = document.body;
+    let mode = document.getElementById("mode");
+    let savedMode = localStorage.getItem("theme");
+
+    if (savedMode === "dark") {
+        body.classList.add("dark");
+        mode.src = "sun.png";
+    } else {
+        body.classList.remove("dark");
+        mode.src = "moon2.png";
+    }
+
+    mode.addEventListener("click", function () {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+            mode.src = "sun.png";
+        } else {
+            localStorage.setItem("theme", "light");
+            mode.src = "moon2.png";
+        }
+    });
+   
+
+// ===== Home =====
+homeBtn.addEventListener("click", () => {
+  hero.style.display = "block";
+  quote.style.display = "block";
+  productsSection.style.display = "grid";
+  aboutSection.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===== About =====
+aboutBtn.addEventListener("click", () => {
+  hero.style.display = "none";
+  quote.style.display = "none";
+  productsSection.style.display = "none";
+  aboutSection.style.display = "grid";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===== Products =====
+productsBtn.addEventListener("click", () => {
+  hero.style.display = "none";
+  quote.style.display = "none";
+  productsSection.style.display = "grid";
+  aboutSection.style.display = "none";
+  productsSection.scrollIntoView({ behavior: "smooth" });
+});
+let allProducts = document.querySelectorAll(".Product");
+let productsDropdown = document.getElementById("productsDropdown");
+
+// Filter المنتجات عند اختيار فئة
+productsDropdown.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        let category = btn.dataset.category;
+
+        hero.style.display = "none";
+        quote.style.display = "none";
+        aboutSection.style.display = "none";
+        productsSection.style.display = "grid";
+
+        allProducts.forEach(prd => {
+            if(category === "All" || prd.dataset.category === category){
+                prd.style.display = "block";
+            } else {
+                prd.style.display = "none";
+            }
+        });
+
+        productsSection.scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+function goProducts() {
+    const productsSection = document.getElementById("pr");
+    const yOffset = -20;
+    const y = productsSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+function showToast(message){
+    let toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
+}
+</script>
+</body>
+</html>
